@@ -43,6 +43,14 @@ primeiro-game-alvo/
 - **Sistema de Reset**: Reinicie o jogo facilmente
 - **Interface Simples**: UI intuitiva e limpa
 
+🎨 Efeitos Visuais
+
+Sombras Suaves: Sistema de sombras com gradiente radial que seguem a bola
+Partículas de Explosão: Efeito visual colorido quando o alvo é atingido
+Animação de Bounce: O alvo cresce e volta com efeito elástico ao ser acertado
+Efeito de Piscar: O alvo pisca quando é atingido
+Background Personalizado: Fundo claro para melhor visibilidade
+
 ## 🛠️ Personalização
 
 ### Ajustar a velocidade da bola

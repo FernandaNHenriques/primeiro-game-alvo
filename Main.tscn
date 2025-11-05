@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj7qkxm8qh8yk"]
+
+[ext_resource type="Script" path="res://GameManager.gd" id="1_3r3xw"]
+[ext_resource type="Script" path="res://Ball.gd" id="2_ball"]
+[ext_resource type="Script" path="res://Target.gd" id="3_target"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ball"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_target"]
+radius = 50.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_2"]
+font_size = 24
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3r3xw")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("2_ball")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_ball")
+
+[node name="Sprite" type="Polygon2D" parent="Ball"]
+color = Color(0.2, 0.6, 1, 1)
+polygon = PackedVector2Array(-32, 0, -22.6274, 22.6274, 0, 32, 22.6274, 22.6274, 32, 0, 22.6274, -22.6274, 0, -32, -22.6274, -22.6274)
+
+[node name="Target" type="Area2D" parent="."]
+position = Vector2(950, 200)
+script = ExtResource("3_target")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
+shape = SubResource("CircleShape2D_target")
+
+[node name="OuterCircle" type="Polygon2D" parent="Target"]
+color = Color(1, 0.3, 0.3, 1)
+polygon = PackedVector2Array(-50, 0, -46.1940, 19.1342, -35.3553, 35.3553, -19.1342, 46.1940, 0, 50, 19.1342, 46.1940, 35.3553, 35.3553, 46.1940, 19.1342, 50, 0, 46.1940, -19.1342, 35.3553, -35.3553, 19.1342, -46.1940, 0, -50, -19.1342, -46.1940, -35.3553, -35.3553, -46.1940, -19.1342)
+
+[node name="InnerCircle" type="Polygon2D" parent="Target"]
+color = Color(1, 0.6, 0.6, 1)
+polygon = PackedVector2Array(-30, 0, -27.7164, 11.4803, -21.2132, 21.2132, -11.4803, 27.7164, 0, 30, 11.4803, 27.7164, 21.2132, 21.2132, 27.7164, 11.4803, 30, 0, 27.7164, -11.4803, 21.2132, -21.2132, 11.4803, -27.7164, 0, -30, -11.4803, -27.7164, -21.2132, -21.2132, -27.7164, -11.4803)
+
+[node name="CenterCircle" type="Polygon2D" parent="Target"]
+color = Color(1, 0.9, 0.9, 1)
+polygon = PackedVector2Array(-10, 0, -9.2388, 3.8268, -7.0711, 7.0711, -3.8268, 9.2388, 0, 10, 3.8268, 9.2388, 7.0711, 7.0711, 9.2388, 3.8268, 10, 0, 9.2388, -3.8268, 7.0711, -7.0711, 3.8268, -9.2388, 0, -10, -3.8268, -9.2388, -7.0711, -7.0711, -9.2388, -3.8268)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 640.0
+offset_bottom = 100.0
+text = "Arraste a bola até o alvo!"
+label_settings = SubResource("LabelSettings_1")
+
+[node name="RestartButton" type="Button" parent="UI"]
+offset_left = 490.0
+offset_top = 400.0
+offset_right = 790.0
+offset_bottom = 480.0
+text = "Jogar Novamente"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="Instructions" type="Label" parent="UI"]
+offset_left = 40.0
+offset_top = 650.0
+offset_right = 800.0
+offset_bottom = 700.0
+text = "Clique e arraste a bola azul até o alvo vermelho"
+label_settings = SubResource("LabelSettings_2")

@@ -1,0 +1,7 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1762344841
+Ball.gd::GDScript::4857784566037732765::1762344602::0::1::::<>CharacterBody2D<><>0<>0<><>::
+GameManager.gd::GDScript::6906247585026843709::1762344602::0::1::::<>Node2D<><>0<>0<><>::
+Main.tscn::PackedScene::5471591606177489558::1762344602::0::1::::<><><>0<>0<><>::res://GameManager.gd<>res://Ball.gd<>res://Target.gd
+README.md::TextFile::-1::1762344602::0::1::::<><><>0<>0<><>::
+Target.gd::GDScript::5560007797226164252::1762344602::0::1::::<>Area2D<><>0<>0<><>::

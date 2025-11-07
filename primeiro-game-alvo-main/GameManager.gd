@@ -25,7 +25,6 @@ func _on_target_hit():
 
 	label.text = "PARABÉNS! Você acertou o alvo!\nTentativas: %d" % attempts
 
-
 	restart_button.visible = true
 
 func _on_restart_pressed():

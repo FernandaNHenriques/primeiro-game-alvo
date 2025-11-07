@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-
 var is_dragging = false
 var drag_speed = 300.0  
+var drag_velocity = Vector2.ZERO
+var friction = 0.92  # Renomeei de deceleration, valor entre 0.85-0.98
 var target_position = Vector2.ZERO
 var start_position = Vector2.ZERO
 
@@ -21,6 +22,7 @@ func _input(event):
 					is_dragging = true
 			else:
 				is_dragging = false
+	
 	if event is InputEventMouseMotion and is_dragging:
 		target_position = get_global_mouse_position()
 
@@ -28,16 +30,22 @@ func _physics_process(_delta):
 	if is_dragging:
 		var direction = (target_position - global_position).normalized()
 		var distance = global_position.distance_to(target_position)
-
+		
 		if distance > 5.0:
-			velocity = direction * drag_speed
+			# Suaviza a aceleração também
+			var target_velocity = direction * drag_speed
+			velocity = velocity.lerp(target_velocity, 0.3)
 		else:
-			velocity = Vector2.ZERO
-
-		move_and_slide()
+			velocity = velocity.lerp(Vector2.ZERO, 0.2)
 	else:
-		velocity = velocity.lerp(Vector2.ZERO, 0.1)
-		move_and_slide()
+		# Desaceleração gradual mais natural
+		velocity *= friction
+		
+		# Para completamente quando muito devagar
+		if velocity.length() < 2.0:
+			velocity = Vector2.ZERO
+	
+	move_and_slide()
 
 func is_mouse_over_ball() -> bool:
 	var mouse_pos = get_global_mouse_position()

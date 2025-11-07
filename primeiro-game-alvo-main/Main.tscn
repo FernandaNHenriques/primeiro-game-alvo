@@ -1,13 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj7qkxm8qh8yk"]
+[gd_scene load_steps=14 format=3 uid="uid://cj7qkxm8qh8yk"]
 
 [ext_resource type="Script" uid="uid://c5no5hl4fkmef" path="res://GameManager.gd" id="1_3r3xw"]
 [ext_resource type="Script" uid="uid://cbhfacnoeqra0" path="res://Ball.gd" id="2_ball"]
+[ext_resource type="Shader" uid="uid://b8wnvhm23n4t2" path="res://Main.gdshader" id="3_cm0pq"]
 [ext_resource type="Script" uid="uid://clhkrsurwydj5" path="res://Target.gd" id="3_target"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ball"]
 radius = 32.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_r0du0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fos0i"]
+shader = ExtResource("3_cm0pq")
+shader_parameter/center_color = Color(0.4, 0.7, 1, 1)
+shader_parameter/edge_color = Color(0.1, 0.3, 0.9, 1)
+shader_parameter/gradient_intensity = 1.5
+shader_parameter/rim_intensity = 0.3
+
+[sub_resource type="Gradient" id="Gradient_fos0i"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3dxm6"]
+gradient = SubResource("Gradient_fos0i")
+width = 128
+height = 128
+fill = 1
+
+[sub_resource type="Gradient" id="Gradient_cm0pq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fos0i"]
+gradient = SubResource("Gradient_cm0pq")
+width = 128
+height = 128
+fill = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0du0"]
 size = Vector2(50, 310.5)
@@ -27,7 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.06823815, 0.49831897, 0.64678186, 1)
+color = Color(0.8489266, 0.9490085, 0.99810165, 1)
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(186, 227)
@@ -37,14 +59,20 @@ script = ExtResource("2_ball")
 shape = SubResource("CircleShape2D_ball")
 
 [node name="Sprite" type="Polygon2D" parent="Ball"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_fos0i")
+position = Vector2(8, 8)
 color = Color(0.2, 0.6, 1, 1)
+texture = SubResource("GradientTexture2D_3dxm6")
 polygon = PackedVector2Array(-32, 0, -22.6274, 22.6274, 0, 32, 22.6274, 22.6274, 32, 0, 22.6274, -22.6274, 0, -32, -22.6274, -22.6274)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
-modulate = Color(1, 1, 1, 0.003921569)
-position = Vector2(5, 10)
-scale = Vector2(0.6, 0.6)
-texture = SubResource("ViewportTexture_r0du0")
+modulate = Color(0, 0, 0, 0.003921569)
+z_index = -1
+z_as_relative = false
+position = Vector2(8, 8)
+scale = Vector2(0.751, 0.95)
+texture = SubResource("GradientTexture2D_fos0i")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
@@ -53,22 +81,22 @@ position = Vector2(348, 262)
 shape = SubResource("RectangleShape2D_r0du0")
 
 [node name="ColorRect" type="ColorRect" parent="Wall"]
-offset_left = 320.0
+offset_left = 321.0
 offset_top = 104.0
-offset_right = 373.0
+offset_right = 374.0
 offset_bottom = 430.0
 color = Color(0.51456076, 0.008423556, 0.30501583, 1)
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-position = Vector2(585, 269)
+position = Vector2(543, 269)
 shape = SubResource("RectangleShape2D_r0du0")
 
 [node name="ColorRect" type="ColorRect" parent="Wall2"]
-offset_left = 559.0
+offset_left = 515.0
 offset_top = 112.0
-offset_right = 612.0
+offset_right = 568.0
 offset_bottom = 428.0
 color = Color(0.51456076, 0.008423556, 0.30501583, 1)
 
@@ -115,8 +143,8 @@ text = "Arraste a bola até o alvo!"
 label_settings = SubResource("LabelSettings_1")
 
 [node name="RestartButton" type="Button" parent="UI"]
-offset_left = 490.0
-offset_top = 400.0
-offset_right = 790.0
-offset_bottom = 480.0
+offset_left = 462.0
+offset_top = 520.0
+offset_right = 762.0
+offset_bottom = 600.0
 text = "Jogar Novamente"

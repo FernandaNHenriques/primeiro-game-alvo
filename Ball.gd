@@ -8,6 +8,7 @@ var start_position = Vector2.ZERO
 
 # Referência ao sprite/visual da bola
 @onready var collision_shape = $CollisionShape2D
+@onready var shadow = $Shadow
 
 func _ready():
 	# Salva a posição inicial
